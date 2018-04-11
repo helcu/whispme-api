@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Whispme Inc.",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
