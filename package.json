@@ -4,14 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Whispme Inc.",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cors": "2.7.1",
     "express": "^4.16.3",
-    "mongoose": "^5.0.14"
+    "mongoose": "^5.0.14",
+    "morgan": "1.7.0"
+  },
+  "devDependencies": {
+    "newman": "^3.8.2",
+    "nodemon": "^1.11.0"
   }
 }

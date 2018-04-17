@@ -1,11 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var bodyParser = require('body-parser');
+var mongoose = require('mongoose')
 
-router.use(bodyParser.urlencoded({ extended: true }));
-router.use(bodyParser.json());
 
-var User = require('../models/User');
+var User = mongoose.model('User');
 
 router.post('/', (req, res) => {
     User.create({

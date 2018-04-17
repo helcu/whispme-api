@@ -9,4 +9,4 @@ var UserSchema = new mongoose.Schema({
   update:{type: Date, default: Date.now}
 });
 mongoose.model('User', UserSchema);
-module.exports = mongoose.model('User');
+//module.exports = mongoose.model('User');
