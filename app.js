@@ -17,6 +17,7 @@ app.use(require('morgan')('dev'));
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/public')); //vuelve publico el acceso de aechivos estaticos en esa ruta
 
@@ -28,6 +29,7 @@ app.use(express.static(__dirname + '/public')); //vuelve publico el acceso de ae
     mongoose.set('debug', true);
   }
 */
+
 mongoose.connect('mongodb://userWhispme:userWhispme@ds241699.mlab.com:41699/whispme-api');
 
 //var db = require('./db'); 
