@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose')
-
+var bcrypt = require('bcrypt');
 
 var User = mongoose.model('User');
 
@@ -24,4 +24,25 @@ router.get('/',  (req, res) =>{
     });
 });
 
+router.post('/Login', (req, res) => {
+
+User.findOne({email: req.body.email} ).exec(
+
+    (err, user) => {
+            if(err){return res.status(500).send("There was a problem in login."); }
+            else if (!user){ return res.status(401).send("User Does`t exist")}
+            bcrypt.compare(req.body.password, user.password, (err, result) =>{
+                if (result === true) {
+                    res.status(200).send(user);
+                } else {
+                    res.status(402).send('user or password incorrect');
+                }
+              })        
+    }
+
+);
+});
+
+
 module.exports = router;
+
