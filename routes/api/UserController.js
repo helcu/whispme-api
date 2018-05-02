@@ -17,6 +17,13 @@ router.post('/', (req, res) => {
         });
 });
 
+router.get('/:id',  (req, res) =>{
+    User.find({_id:req.params.id},  (err, users) =>{
+        if (err) return res.status(500).send("There was a problem finding the users.");
+        res.status(200).send(users);
+    });
+});
+
 router.get('/',  (req, res) =>{
     User.find({},  (err, users) =>{
         if (err) return res.status(500).send("There was a problem finding the users.");

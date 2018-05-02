@@ -9,4 +9,4 @@ resources:
   disk_size_gb: 10
 
 env_variables:
-  NODE_ENV: "my production"
+  NODE_ENV: "production"
