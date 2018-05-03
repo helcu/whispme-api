@@ -7,7 +7,7 @@ var User = mongoose.model('User');
 
 router.post('/', (req, res) => {
     User.create({
-            userName: req.body.userName,          
+            username: req.body.username,          
             email : req.body.email,
             password : req.body.password
         }, 
@@ -31,9 +31,9 @@ router.get('/',  (req, res) =>{
     });
 });
 
-router.post('/Login', (req, res) => {
+router.post('/login', (req, res) => {
 
-User.findOne({email: req.body.email} ).exec(
+User.findOne({username: req.body.username} ).exec(
 
     (err, user) => {
             if(err){return res.status(500).send("There was a problem in login."); }

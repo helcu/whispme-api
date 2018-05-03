@@ -4,14 +4,14 @@ var bcrypt = require('bcrypt');
 //falta poner los required de la entidad
 
 var UserSchema = new mongoose.Schema({
-  userName: { type:String, required: true },    
+  username: { type:String, required: true },    
   email: { type:String, required: true },
   password: { type:String, required: true },
-  bio: { type: String , required: false},
-  photo : {type: String, required: false},
-  followers: {type: Number, required: false},
-  tokenId :{type: String, require: false},
-  firebaseToken:{type: String, required: false}, 
+  bio: { type: String , required: false, default: ''},
+  photo : {type: String, required: false, default: ''},
+  followers: {type: Number, required: false, default: 0},
+  tokenId :{type: String, require: false, default: ''},
+  firebaseToken:{type: String, required: false, default: ''}, 
   update:{type: Date, default: Date.now}
 });
 

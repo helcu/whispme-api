@@ -37,6 +37,7 @@ mongoose.connect('mongodb://userWhispme:userWhispme@ds241699.mlab.com:41699/whis
 //instaciar las entidades de mongoose
 
 require('./models/User');
+require('./models/Whisp');
 
 app.use(require('./routes'));
 //var UserController = require('./routes/api/UserController');

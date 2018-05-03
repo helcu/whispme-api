@@ -1,7 +1,7 @@
 var router = require('express').Router();
 
-router.use('/User', require('./UserController'));
-//router.use('/profiles', require('./profiles'));
+router.use('/user', require('./UserController'));
+router.use('/whisp', require('./WhispController'));
 //router.use('/articles', require('./articles'));
 //router.use('/tags', require('./tags'));
 
