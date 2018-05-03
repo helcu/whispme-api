@@ -12,6 +12,7 @@ router.post('/',(req,res) => {
         typewhisp: req.body.type,
         content: req.body.content,
         title: req.body.title,
+        place: req.body.place,
         cordenate:{latitude: req.body.latitude, longitude:req.body.longitude},
         meta: {likes: 0, views: 0, comments:0}
     }, (err,whisp) =>{
