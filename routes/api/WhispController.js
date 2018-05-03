@@ -39,7 +39,7 @@ router.get('/findByCordenate',(req,res) => {
 
 router.get('/trend',(req,res) => {
 
-    Whisp.find({}).limit(10).sort('-meta.likes').exec((err,whisp) =>{
+    Whisp.find({}).populate('owner').limit(10).sort('-meta.likes').exec((err,whisp) =>{
 
         if (err) return res.status(500).send(err.toString());
             res.status(200).send(whisp);
