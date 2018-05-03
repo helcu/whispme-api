@@ -8,7 +8,8 @@ var WhispSchema = new mongoose.Schema({
     content: {  type: String , required: true},
     title:{  type: String , required: true},
     cordenate:{ latitude: Number , longitude: Number},
-    meta: {likes: Number, views: Number, comments:Number}
+    meta: {likes: Number, views: Number, comments:Number},
+    update:{type: Date, default: Date.now}
 });
 
 
