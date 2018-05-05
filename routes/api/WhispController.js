@@ -13,7 +13,7 @@ router.post('/',(req,res) => {
         content: req.body.content,
         title: req.body.title,
         place: req.body.place,
-        cordenate:{latitude: req.body.latitude, longitude:req.body.longitude},
+        loc:[parseFloat(req.body.longitude),parseFloat(req.body.latitude)],
         meta: {likes: 0, views: 0, comments:0}
     }, (err,whisp) =>{
 
@@ -25,9 +25,35 @@ router.post('/',(req,res) => {
 });
 
 
-router.get('/findByCordenate',(req,res) => {
+router.get('/',(req,res) => {
 
-    Whisp.findOne({ 'cordenate.latitude':req.query.latitude,'cordenate.longitude':req.query.longitude}).populate('owner')
+    Whisp.find({}).populate('owner')
+    .exec((err,whisp) => {
+
+        if (err) return res.status(500).send(err.toString());
+            res.status(200).send(whisp);
+
+    } );
+
+});
+
+
+router.get('/findByCordenate',(req,res) => {
+    var coords = [];
+    coords[0] = req.query.longitude;
+    coords[1] = req.query.latitude;
+
+    var maxDistance = 2000;
+
+    Whisp.find({ loc: {
+        $near: {
+            $geometry: {
+                type: "Point",
+                coordinates: coords
+            },
+            $maxDistance: maxDistance
+        }
+    }} ).populate('owner')
     .exec((err,whisp) => {
 
         if (err) return res.status(500).send(err.toString());
