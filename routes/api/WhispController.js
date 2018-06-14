@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose')
 var bcrypt = require('bcrypt');
+var baseResponse = require('../../util/baseResponse.js');
 
 var Whisp = mongoose.model('Whisp');
 
@@ -17,8 +18,9 @@ router.post('/',(req,res) => {
         meta: {likes: 0, views: 0, comments:0}
     }, (err,whisp) =>{
 
-        if (err) return res.status(500).send(err.toString());
-            res.status(200).send(whisp);
+        if (err) return res.status(500).send(baseResponse(500,'ERROR', err.toString()));
+            res.status(200).send(baseResponse(200,'OK',whisp));
+
 
     });
 
@@ -30,8 +32,8 @@ router.get('/',(req,res) => {
     Whisp.find({}).populate('owner')
     .exec((err,whisp) => {
 
-        if (err) return res.status(500).send(err.toString());
-            res.status(200).send(whisp);
+        if (err) return res.status(500).send(baseResponse(500,'ERROR', err.toString()));
+              res.status(200).send(baseResponse(200,'OK',whisp));
 
     } );
 
@@ -56,8 +58,9 @@ router.get('/findByCordenate',(req,res) => {
     }} ).populate('owner')
     .exec((err,whisp) => {
 
-        if (err) return res.status(500).send(err.toString());
-            res.status(200).send(whisp);
+        if (err) return res.status(500).send(baseResponse(500,'ERROR', err.toString()));
+            res.status(200).send(baseResponse(200,'OK',whisp));
+
 
     } );
 
@@ -67,8 +70,9 @@ router.get('/trend',(req,res) => {
 
     Whisp.find({}).populate('owner').limit(10).sort('-meta.likes').exec((err,whisp) =>{
 
-        if (err) return res.status(500).send(err.toString());
-            res.status(200).send(whisp);
+        if (err) return res.status(500).send(baseResponse(500,'ERROR', err.toString()));
+            res.status(200).send(baseResponse(200,'OK',whisp));
+
 
     });  
 
