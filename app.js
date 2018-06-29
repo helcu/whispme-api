@@ -38,6 +38,7 @@ mongoose.connect('mongodb://userWhispme:userWhispme@ds241699.mlab.com:41699/whis
 
 require('./models/User');
 require('./models/Whisp');
+require('./models/Follow');
 
 app.use(require('./routes'));
 //var UserController = require('./routes/api/UserController');

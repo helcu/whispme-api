@@ -5,6 +5,7 @@ var bcrypt = require('bcrypt');
 var baseResponse = require('../../util/baseResponse.js')
 
 var User = mongoose.model('User');
+var Follow = mongoose.model('Follow');
 
 router.post('/', (req, res) => {
     User.create({
@@ -16,6 +17,34 @@ router.post('/', (req, res) => {
             if (err) return res.status(500).send(baseResponse(500,'ERROR', err.toString()));
             res.status(200).send(baseResponse(200,'OK', user));
         });
+});
+
+router.post('/follow', (req, res) => {
+    var user = req.body.user;
+    var followed = req.body.followed
+
+    Follow.create({
+            follower: user,          
+            followed : followed
+        }, 
+         (err, foll) => {
+            if (err) return res.status(500).send(baseResponse(500,'ERROR', err.toString()));
+            res.status(200).send(baseResponse(200,'OK', foll));
+        });
+});
+
+router.get('/following/:user',  (req, res) =>{
+    Follow.find({follower:req.params.user}).populate('followed').exec(  (err, foll) =>{
+        if (err) return res.status(500).send(baseResponse(500,'ERROR', 'There was a problem finding followers'));
+        res.status(200).send(baseResponse(200,'OK', foll));
+    });
+});
+
+router.get('/follower/:user',  (req, res) =>{
+    Follow.find({followed:req.params.user}).populate('follower').exec(  (err, foll) =>{
+        if (err) return res.status(500).send(baseResponse(500,'ERROR', 'There was a problem finding followers'));
+        res.status(200).send(baseResponse(200,'OK', foll));
+    });
 });
 
 router.get('/:id',  (req, res) =>{

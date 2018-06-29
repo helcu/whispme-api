@@ -9,7 +9,7 @@ var Whisp = mongoose.model('Whisp');
 router.post('/',(req,res) => {
 
     Whisp.create({
-        owner: req.body.id,
+        owner: req.body.owner,
         typewhisp: req.body.type,
         content: req.body.content,
         title: req.body.title,
