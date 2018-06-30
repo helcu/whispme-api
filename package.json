@@ -1,0 +1,25 @@
+{
+  "name": "whispme-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gcloud app deploy --version dev"
+  },
+  "author": "Whispme Inc.",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^2.0.1",
+    "body-parser": "^1.18.2",
+    "cors": "2.7.1",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.14",
+    "morgan": "1.7.0"
+  },
+  "devDependencies": {
+    "newman": "^3.8.2",
+    "nodemon": "^1.11.0"
+  }
+}
